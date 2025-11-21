@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oil Marketplace</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Oil Marketplace API Tester</h1>
+            <nav id="auth-nav">
+                <button id="show-login" class="active">Login</button>
+                <button id="show-register">Register</button>
+            </nav>
+            <nav id="user-nav" style="display: none;">
+                <span id="welcome-msg"></span>
+                <button id="logout-btn">Logout</button>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Auth Section -->
+            <section id="auth-section">
+                <div id="login-form" class="form-container">
+                    <h2>Login</h2>
+                    <form onsubmit="handleLogin(event)">
+                        <input type="email" id="login-email" placeholder="Email" required>
+                        <input type="password" id="login-password" placeholder="Password" required>
+                        <button type="submit">Login</button>
+                    </form>
+                </div>
+
+                <div id="register-form" class="form-container" style="display: none;">
+                    <h2>Register</h2>
+                    <form onsubmit="handleRegister(event)">
+                        <input type="text" id="reg-username" placeholder="Username" required>
+                        <input type="email" id="reg-email" placeholder="Email" required>
+                        <input type="password" id="reg-password" placeholder="Password" required>
+                        <button type="submit">Register</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" style="display: none;">
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="switchTab('profile')">Profile</button>
+                    <button class="tab-btn" onclick="switchTab('create')">Create Product</button>
+                    <button class="tab-btn" onclick="switchTab('list')">My Products</button>
+                </div>
+
+                <div id="profile-tab" class="tab-content">
+                    <h3>User Profile</h3>
+                    <div id="profile-data">Loading...</div>
+                </div>
+
+                <div id="create-tab" class="tab-content" style="display: none;">
+                    <h3>List New Product</h3>
+                    <form onsubmit="handleCreateProduct(event)">
+                        <select id="prod-type" required>
+                            <option value="seeds">Seeds</option>
+                            <option value="byproduct">Byproduct</option>
+                        </select>
+                        <input type="text" id="prod-name" placeholder="Product Name" required>
+                        <input type="date" id="prod-date" required>
+                        <input type="number" id="prod-amount" placeholder="Amount (kg)" step="0.01" required>
+                        <div style="margin-bottom: 1rem;">
+                            <label for="prod-cert"
+                                style="display: block; margin-bottom: 0.5rem; color: #4b5563;">Certificate (PDF)</label>
+                            <input type="file" id="prod-cert" accept=".pdf" required>
+                        </div>
+                        <button type="submit">Create Listing</button>
+                    </form>
+                </div>
+
+                <div id="list-tab" class="tab-content" style="display: none;">
+                    <h3>My Listings</h3>
+                    <div class="filter-btns">
+                        <button onclick="fetchProducts('seed')">Seeds</button>
+                        <button onclick="fetchProducts('byproduct')">Byproducts</button>
+                    </div>
+                    <div id="product-list" class="grid-list"></div>
+                </div>
+            </section>
+        </main>
+        <div id="toast" class="toast"></div>
+    </div>
+    <script src="/static/app.js"></script>
+</body>
+
+</html>

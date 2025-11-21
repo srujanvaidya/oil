@@ -11,4 +11,3 @@ PyJWT
 djangorestframework
 django-cors-headers
 firebase-admin
-

@@ -57,6 +57,8 @@ def login(request):
         "iat": datetime.datetime.utcnow()
     }
     token = jwt.encode(payload,settings.SECRET_KEY,algorithm="HS256")
+    if isinstance(token, bytes):
+        token = token.decode('utf-8')
 
     return Response({"token":token,"username":user.username})
 
@@ -77,6 +79,7 @@ def logout(request):
 #PRODUCT LISTING
 class CreateproductAPIView(APIView):
     permission_classes=[IsAuthenticated]
+    parser_classes = [MultiPartParser, FormParser]
 
 
     def get(self, request):
@@ -98,7 +101,7 @@ class CreateproductAPIView(APIView):
                 "product_type": product.type,
                 "product_name": product.product_name,
                 "date_of_listing": product.date_of_listing,
-                #"certification_file": product.certificate.url,
+                "certification_file": product.certificate.url,
                 "amount_available_kg": str(product.amount_kg),
                 #"price_per_kg_inr": str(product.market_price_per_kg_inr),
             }, status=status.HTTP_201_CREATED)
