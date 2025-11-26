@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/oil.iml" filepath="$PROJECT_DIR$/.idea/oil.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fasalmitra.iml" filepath="$PROJECT_DIR$/fasalmitra.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/fasalmitra_android.iml" filepath="$PROJECT_DIR$/android/fasalmitra_android.iml" />
     </modules>
   </component>
 </project>
